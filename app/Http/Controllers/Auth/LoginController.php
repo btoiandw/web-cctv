@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class LoginController extends Controller
 {
@@ -43,22 +47,24 @@ class LoginController extends Controller
         //dd($request->all());
         $username = $request->username;
         $password = $request->password;
-        dd($request->all(), $username, $password);
-
-        if ($username == "" && $password == "") {
-            return redirect('/');
-        } 
-        // else {
-        //     if ($username == "biw" && $password == "P@ssw0rd11") {
-        //         return view('pages.index')->with('success','login successful!');    
-        //     }elseif ($username=="biw"&&$password!="P@ssw0rd11") {
-        //         return redirect()->with('passerror','Password incorrect!!');
-        //     }else{
-        //         return redirect()->with('puerror','Usename and Password incorrect!!');
-        //     }
-        // }
+       // $hashed =  Crypt::encrypt($password);
+        
+        
+            $user = DB::table('users')->where('username', '=', $username)->find(1);
+            $userc = DB::table('users')->where('username', '=', $username)->count();
+            //dd($request->all(), $user,$userc, $username, $password);
+           if ($userc==1) {
+            return 'successful';
+           } else {
+            return 'login faild';
+           }
+           
+            
+        
+        
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect('login');
     }
