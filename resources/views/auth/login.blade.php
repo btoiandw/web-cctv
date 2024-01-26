@@ -38,8 +38,23 @@
         width: 40%;
         padding-top: 2rem;
         padding-bottom: 1.5rem;
-
         text-align: center;
+        border-radius: 20px;
+    }
+    .btn-submit{
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .btn-submit:hover{
+        background-color: #86A7FC;
+        box-shadow: 4px 4px #888888; 
+        color: #000;
+        font-size: 20px;
+        font-weight: bold;
     }
 </style>
 
@@ -66,8 +81,8 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="row mt-3 mb-3">
-                    <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
-                    <div class="col-md-7">
+                    <label for="username" class="col-md-3 col-form-label text-md-end font-weight-bolder">{{ __('Username') }}</label>
+                    <div class="col-md-8">
                         <input id="usename" type="text" class="form-control " name="username"
                             value="{{ old('username') }}" required autocomplete="username" autofocus>
 
@@ -80,9 +95,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                    <label for="password" class="col-md-3 col-form-label text-md-end font-weight-bolder">{{ __('Password') }}</label>
 
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required
                             autocomplete="current-password">
@@ -110,8 +125,8 @@
 
                 <div class="row mb-0 justify-content-center">
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            {{ __('LOGIN') }}
                         </button>
                     </div>
                 </div>
